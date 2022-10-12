@@ -19,11 +19,12 @@ struct Photos: Decodable {
 }
 
 struct PhotoElement: Decodable {
-    let id, owner, secret, server: String
-    let farm: Int
+    let id, owner, ownername,iconserver, secret, server: String?
+    let iconfarm: Int?
     let title: String
-    let ispublic, isfriend, isfamily: Int
-    let url: URL
+    let ispublic, isfriend, isfamily: Int?
+    let url_m: URL?
+
 }
 
 

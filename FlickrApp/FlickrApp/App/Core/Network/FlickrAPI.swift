@@ -22,7 +22,7 @@ extension FlickrAPI: TargetType{
     var task: Moya.Task {
         switch self {
         case .getRecent:
-            return .requestParameters(parameters: ["method": "flickr.photos.getRecent", "api_key": "fc59ff43ff445e7f1e43e7602bb6b832","per_page": 10, "page": 1, "format": "json", "nojsoncallback": "1"], encoding: URLEncoding.queryString)
+            return .requestParameters(parameters: ["method": "flickr.photos.getRecent", "api_key": "fc59ff43ff445e7f1e43e7602bb6b832","per_page": 10, "page": 1, "format": "json", "nojsoncallback": "1","extras": "tags,owner_name,icon_server,views,url_m"], encoding: URLEncoding.queryString)
         case .getSize(let id):
             return .requestParameters(parameters: ["method": "flickr.photos.getSizes", "api_key": "fc59ff43ff445e7f1e43e7602bb6b832", "photo_id": id, "format": "json", "nojsoncallback": "1"], encoding: URLEncoding.queryString)
 

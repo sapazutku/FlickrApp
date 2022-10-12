@@ -11,12 +11,6 @@ class PostCell: UICollectionViewCell {
 
     // MARK: - Properties
 
-    var data: PhotoElement? {
-        didSet {
-            guard let data = data else { return }
-        }
-    }
-
     var postImageView: UIImageView = {
            let iv = UIImageView()
            iv.contentMode = .scaleAspectFill
@@ -32,7 +26,7 @@ class PostCell: UICollectionViewCell {
            return label
        }()
 
-       private let profileImageView: UIImageView = {
+       var profileImageView: UIImageView? = {
            let iv = UIImageView()
            iv.contentMode = .scaleAspectFill
            iv.clipsToBounds = true
@@ -40,14 +34,14 @@ class PostCell: UICollectionViewCell {
            return iv
        }()
 
-       private let captionLabel: UILabel = {
+       var captionLabel: UILabel = {
            let label = UILabel()
            
            label.textColor = .black
            return label
        }()
 
-       private let likesLabel: UILabel = {
+       var likesLabel: UILabel = {
            let label = UILabel()
            label.font = UIFont.systemFont(ofSize: 14)
            label.textColor = .black
@@ -61,7 +55,7 @@ class PostCell: UICollectionViewCell {
           backgroundColor = .white
           addSubview(postImageView)
           addSubview(usernameLabel)
-          addSubview(profileImageView)
+          addSubview(profileImageView!)
           addSubview(captionLabel)
           addSubview(likesLabel)
           
@@ -76,12 +70,12 @@ class PostCell: UICollectionViewCell {
 
       override func layoutSubviews() {
           super.layoutSubviews()
-          profileImageView.frame = CGRect(x: 10, y: 10, width: 40, height: 40)
-          profileImageView.layer.cornerRadius = 40 / 2
-          usernameLabel.frame = CGRect(x: profileImageView.frame.origin.x + 50, y: 10, width: contentView.frame.size.width - 60, height: 40)
-          postImageView.frame = CGRect(x: 0, y: profileImageView.frame.origin.y + 50, width: frame.width, height: contentView.frame.size.width)
+          profileImageView?.frame = CGRect(x: 10, y: 10, width: 40, height: 40)
+          profileImageView?.layer.cornerRadius = 40 / 2
+          usernameLabel.frame = CGRect(x: profileImageView!.frame.origin.x + 50, y: 10, width: contentView.frame.size.width - 60, height: 40)
+          postImageView.frame = CGRect(x: 0, y: profileImageView!.frame.origin.y + 50, width: frame.width, height: contentView.frame.size.width)
           likesLabel.frame = CGRect(x: 10, y: postImageView.frame.origin.y + postImageView.frame.size.height + 10, width: contentView.frame.size.width - 20, height: 40)
-          captionLabel.frame = CGRect(x: profileImageView.frame.origin.x + 50, y: likesLabel.frame.origin.y + 50, width: 200, height: 40)
+          captionLabel.frame = CGRect(x: 10, y: likesLabel.frame.origin.y + 30, width: 200, height: 40)
       }
     
     

@@ -11,7 +11,7 @@ import Moya
 // create a text Home Controller
 class HomeController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return responseArray.count ?? .zero
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -19,17 +19,32 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
         
-       
-        // create index path
-        //print("ROW: \(indexPath.row)")
+        let post = responseArray[indexPath.item]
         
+        cell.usernameLabel.text = post.ownername
+        cell.postImageView.downloadImage(from: post.url_m)
+        cell.captionLabel.text = post.title
         
-        //cell.usernameLabel.text = responseArray[indexPath.row].title
-        //cell.usernameLabel.text = responseArray[indexPath.item].title
-        cell.postImageView.downloadImage(from: URL(string: "https://live.staticflickr.com/65535/52423427088_3d8b920828_w.jpg"))
+        // if url have an image, download it
+        let iconURL =  "http://farm\(post.iconfarm!).staticflickr.com/\(post.iconserver!)/buddyicons/\(post.owner!).jpg"
+        
+
+        if post.iconserver != "0"{
+            cell.profileImageView?.downloadImage(from: URL(string: iconURL))
+        }
+        else{
+            cell.profileImageView?.downloadImage(from: URL(string: "https://www.flickr.com/images/buddyicon.gif"))
+        }
+        
 
 
+        print(iconURL)
+        //cell.profileImageView?.downloadImage(from: URL(string: iconURL))
         
+        
+        //cell.profileImageView?.downloadImage(from: URL(string: profileUrl ))
+
+
 
         return cell
     }
@@ -58,7 +73,9 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        fetchPosts()    }
+        fetchPosts()
+        
+    }
 
     // MARK: - Helpers
 
