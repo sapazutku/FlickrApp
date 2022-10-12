@@ -7,9 +7,20 @@
 
 import Foundation
 
-struct Post {
-    let imageUrl: String
-    let caption: String
-    let likes: Int
-    //let user: User
+struct Post: Codable {
+    let photos: Photos
+    let stat: String
+}
+
+struct Photos: Codable {
+    let page, pages, perpage: Int
+    let total: Int
+    let photo: [PhotoElement]
+}
+
+struct PhotoElement: Codable {
+    let id, owner, secret, server: String
+    let farm: Int
+    let title: String
+    let ispublic, isfriend, isfamily: Int
 }

@@ -86,8 +86,8 @@ class PostCell: UICollectionViewCell {
 
     func configure() {
         guard let post = post else { return }
-        captionLabel.text = post.caption
-        likesLabel.text = "\(post.likes) likes"
+        captionLabel.text = post.stat.description
+        likesLabel.text = "likes"
         //postImageView.sd_setImage(with: URL(string: post.imageUrl))
         //usernameLabel.text = post.ownerUsername
         //profileImageView.sd_setImage(with: URL(string: post.ownerImageUrl))

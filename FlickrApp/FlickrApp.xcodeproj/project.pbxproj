@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5448966C28F6E6CF00E02F44 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */; };
+		5448966F28F6E84900E02F44 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 5448966E28F6E84900E02F44 /* Moya */; };
 		5450EEFE28F608FB009A16ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5450EEFD28F608FB009A16ED /* AppDelegate.swift */; };
 		5450EF0028F608FB009A16ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5450EEFF28F608FB009A16ED /* SceneDelegate.swift */; };
 		5450EF0228F608FB009A16ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5450EF0128F608FB009A16ED /* ViewController.swift */; };
@@ -23,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		5450EEFA28F608FB009A16ED /* FlickrApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5450EEFD28F608FB009A16ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5450EEFF28F608FB009A16ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +47,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5448966F28F6E84900E02F44 /* Moya in Frameworks */,
 				5450EF3028F61202009A16ED /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -187,6 +191,7 @@
 		5450EF2428F60C18009A16ED /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 			name = FlickrApp;
 			packageProductDependencies = (
 				5450EF2F28F61202009A16ED /* SnapKit */,
+				5448966E28F6E84900E02F44 /* Moya */,
 			);
 			productName = FlickrApp;
 			productReference = 5450EEFA28F608FB009A16ED /* FlickrApp.app */;
@@ -280,6 +286,7 @@
 			mainGroup = 5450EEF128F608FB009A16ED;
 			packageReferences = (
 				5450EF2E28F61202009A16ED /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5448966D28F6E84900E02F44 /* XCRemoteSwiftPackageReference "Moya" */,
 			);
 			productRefGroup = 5450EEFB28F608FB009A16ED /* Products */;
 			projectDirPath = "";
@@ -317,6 +324,7 @@
 				5450EF3F28F62256009A16ED /* Post.swift in Sources */,
 				5450EF0828F608FB009A16ED /* FlickrApp.xcdatamodeld in Sources */,
 				5450EF0028F608FB009A16ED /* SceneDelegate.swift in Sources */,
+				5448966C28F6E6CF00E02F44 /* FlickrAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +550,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5448966D28F6E84900E02F44 /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		5450EF2E28F61202009A16ED /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -553,6 +569,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5448966E28F6E84900E02F44 /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5448966D28F6E84900E02F44 /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
 		5450EF2F28F61202009A16ED /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5450EF2E28F61202009A16ED /* XCRemoteSwiftPackageReference "SnapKit" */;
