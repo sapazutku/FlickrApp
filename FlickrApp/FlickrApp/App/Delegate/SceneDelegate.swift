@@ -68,6 +68,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             // Tab Bar Customisation
             tabBar.barTintColor = .gray
             tabBar.tintColor = .systemPink
+            tabBar.backgroundColor = .white
 
 
 

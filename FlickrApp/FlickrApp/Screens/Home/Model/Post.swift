@@ -8,14 +8,14 @@
 import Foundation
 
 struct Post: Codable {
-    let photos: Photos
+    var photos: Photos
     let stat: String
 }
 
 struct Photos: Codable {
     let page, pages, perpage: Int
     let total: Int
-    let photo: [PhotoElement]
+    var photo: [PhotoElement]
 }
 
 struct PhotoElement: Codable {
@@ -24,3 +24,23 @@ struct PhotoElement: Codable {
     let title: String
     let ispublic, isfriend, isfamily: Int
 }
+
+struct Size: Codable {
+    let sizes: Sizes
+    let stat: String
+}
+
+struct Sizes: Codable {
+    let canblog, canprint, candownload: Int
+    let size: [SizeElement]
+}
+
+struct SizeElement: Codable {
+    let label: String
+    let width, height: Int
+    let source: String
+    let url: String
+    let media: String
+}
+
+

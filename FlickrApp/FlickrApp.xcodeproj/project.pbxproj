@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5448966C28F6E6CF00E02F44 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */; };
 		5448966F28F6E84900E02F44 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 5448966E28F6E84900E02F44 /* Moya */; };
+		5448967128F717D000E02F44 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448967028F717D000E02F44 /* CellData.swift */; };
 		5450EEFE28F608FB009A16ED /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5450EEFD28F608FB009A16ED /* AppDelegate.swift */; };
 		5450EF0028F608FB009A16ED /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5450EEFF28F608FB009A16ED /* SceneDelegate.swift */; };
 		5450EF0228F608FB009A16ED /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5450EF0128F608FB009A16ED /* ViewController.swift */; };
@@ -26,6 +27,7 @@
 
 /* Begin PBXFileReference section */
 		5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
+		5448967028F717D000E02F44 /* CellData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
 		5450EEFA28F608FB009A16ED /* FlickrApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5450EEFD28F608FB009A16ED /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5450EEFF28F608FB009A16ED /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				5450EF3E28F62256009A16ED /* Post.swift */,
+				5448967028F717D000E02F44 /* CellData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -325,6 +328,7 @@
 				5450EF0828F608FB009A16ED /* FlickrApp.xcdatamodeld in Sources */,
 				5450EF0028F608FB009A16ED /* SceneDelegate.swift in Sources */,
 				5448966C28F6E6CF00E02F44 /* FlickrAPI.swift in Sources */,
+				5448967128F717D000E02F44 /* CellData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
