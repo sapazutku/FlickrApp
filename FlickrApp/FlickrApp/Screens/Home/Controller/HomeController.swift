@@ -8,18 +8,27 @@
 import UIKit
 import Moya
 
-// create a text Home Controller 
+// create a text Home Controller
 class HomeController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
-        cell.layer.borderWidth = 1
-        cell.layer.borderColor = UIColor.lightGray.cgColor    
+        
        
-        cell.data = CellData(id: "1", title: "DENEME", url: "https://live.staticflickr.com//65535//52423185568_35e14b54b0_m.jpg", owner: "UTKU")
+        // create index path
+        //print("ROW: \(indexPath.row)")
+        
+        
+        //cell.usernameLabel.text = responseArray[indexPath.row].title
+        //cell.usernameLabel.text = responseArray[indexPath.item].title
+        cell.postImageView.downloadImage(from: URL(string: "https://live.staticflickr.com/65535/52423427088_3d8b920828_w.jpg"))
+
+
         
 
         return cell
@@ -29,16 +38,14 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     
     private let provider = MoyaProvider<FlickrAPI>()
 
-    var responseArray = [Post]()
-    var sizeArray = [Size]()
-    
-    var dataCellArray = [CellData]()
+    var responseArray = [PhotoElement]()
 
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.itemSize.width = UIScreen.main.bounds.width
         // add border to the cell
-        layout.itemSize.height = UIScreen.main.bounds.width + 50
+        layout.itemSize.height = UIScreen.main.bounds.width + 150
         // change layout background color
         
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -51,8 +58,7 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        fetchPosts()
-    }
+        fetchPosts()    }
 
     // MARK: - Helpers
 
@@ -73,70 +79,16 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
             switch result {
             case .success(let response):
                 do {
-                    // print response json
-                    //let json = try JSONSerialization.jsonObject(with: response.data, options: [])
-                    //print(json)
-
-                    let posts = try JSONDecoder().decode(Post.self, from: response.data)
-                    self.responseArray.append(posts)
-                    self.collectionView.reloadData()
+                    let responsePosts = try JSONDecoder().decode(Post.self, from: response.data)
                     
-                    // fetch size of the image
-
-                    for i in 0..<posts.photos.photo.count {
-                        let id = posts.photos.photo[i].id
-                        self.provider.request(.getSize(id: id)) { result in
-                            switch result {
-                            case .success(let response):
-                                do {
-                                    let size = try JSONDecoder().decode(Size.self, from: response.data)
-                                    self.sizeArray.append(size)
-                                    self.collectionView.reloadData()
-                                    
-                                    // create cell data
-                                    let cellData = CellData(id: id, title: posts.photos.photo[i].title, url:size.sizes.size[0].url , owner: posts.photos.photo[i].owner )
-                                    print(cellData)
-                                    self.dataCellArray.append(cellData)
-                                    print(self.dataCellArray.count)
-                                    
-                                } catch let error {
-                                    print("DEBUG: Error is \(error.localizedDescription)")
-                                }
-                            case .failure(let error):
-                                print("DEBUG: Error is \(error.localizedDescription)")
-                            }
-                        }
-                    }
-                    
-                    self.collectionView.reloadData()
-                
+                    self.responseArray = responsePosts.photos.photo
+                    print(response.data)
                     
                 } catch let error {
                     print(error)
                 }
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-
-    func fetchImage(photo_id: String){
-        provider.request(.getSize(id:  photo_id)) { result in
-            switch result {
-            case .success(let response):
-                do {
-                    // print response json
-                    //let json = try JSONSerialization.jsonObject(with: response.data, options: [])
-                    //print(json)
-
-                    let sizes = try JSONDecoder().decode(Size.self, from: response.data)
-                    self.sizeArray.append(sizes)
+                DispatchQueue.main.async {
                     self.collectionView.reloadData()
-                    
-                    
-                    
-                } catch let error {
-                    print(error)
                 }
             case .failure(let error):
                 print(error)

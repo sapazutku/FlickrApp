@@ -11,25 +11,21 @@ class PostCell: UICollectionViewCell {
 
     // MARK: - Properties
 
-    var data: CellData? {
+    var data: PhotoElement? {
         didSet {
             guard let data = data else { return }
-            captionLabel.text = data.title
-            usernameLabel.text = data.owner
-            postImageView.image = loadImage(url: data.url)
-
         }
     }
 
-    private let postImageView: UIImageView = {
+    var postImageView: UIImageView = {
            let iv = UIImageView()
            iv.contentMode = .scaleAspectFill
            iv.clipsToBounds = true
-           iv.backgroundColor = .lightGray
+          
            return iv
        }()
 
-       private let usernameLabel: UILabel = {
+    var usernameLabel: UILabel = {
            let label = UILabel()
            label.font = UIFont.boldSystemFont(ofSize: 14)
            label.textColor = .black
@@ -90,12 +86,5 @@ class PostCell: UICollectionViewCell {
     
     
 
-    // MARK: - Helpers
-
-    func loadImage(url: String) -> UIImage {
-        let url = URL(string: url)
-        let data = try? Data(contentsOf: url!)
-        return UIImage(data: data!)!
-    }
 
 }

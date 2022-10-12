@@ -7,40 +7,25 @@
 
 import Foundation
 
-struct Post: Codable {
+struct Post: Decodable {
     var photos: Photos
     let stat: String
 }
 
-struct Photos: Codable {
+struct Photos: Decodable {
     let page, pages, perpage: Int
     let total: Int
     var photo: [PhotoElement]
 }
 
-struct PhotoElement: Codable {
+struct PhotoElement: Decodable {
     let id, owner, secret, server: String
     let farm: Int
     let title: String
     let ispublic, isfriend, isfamily: Int
+    let url: URL
 }
 
-struct Size: Codable {
-    let sizes: Sizes
-    let stat: String
-}
 
-struct Sizes: Codable {
-    let canblog, canprint, candownload: Int
-    let size: [SizeElement]
-}
-
-struct SizeElement: Codable {
-    let label: String
-    let width, height: Int
-    let source: String
-    let url: String
-    let media: String
-}
 
 
