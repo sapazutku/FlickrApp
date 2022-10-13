@@ -56,7 +56,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 // https://stackoverflow.com/questions/43961766/uinavigationcontroller-and-tabbarcontroller-programmatically-no-storyboards
     private func setUpTabBar() {
         let tabBarController = CustomTabBarController()
-        
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
@@ -69,8 +68,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             tabBar.tintColor = .systemPink
             tabBar.backgroundColor = .white
+            
 
-
+            // View Controllers
 
             viewControllers = [
                 createTabBarItem(tabBarTitle: "Home", tabBarImage: "house", viewController: HomeController()),
@@ -82,6 +82,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         func createTabBarItem(tabBarTitle: String, tabBarImage: String, viewController: UIViewController) -> UINavigationController {
             let navCont = UINavigationController(rootViewController: viewController)
             navCont.tabBarItem.title = tabBarTitle
+            
             //system icon
             // if selected use "house.fill"
 
@@ -93,7 +94,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             
             // Nav Bar Title Customisation
             
-            navCont.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 20)!]
+            navCont.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-Bold", size: 20)!, NSAttributedString.Key.foregroundColor: UIColor.black]
             
             
             

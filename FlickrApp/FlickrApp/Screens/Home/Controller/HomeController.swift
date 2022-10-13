@@ -36,16 +36,7 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
             cell.profileImageView?.downloadImage(from: URL(string: "https://www.flickr.com/images/buddyicon.gif"))
         }
         
-
-
-        print(iconURL)
-        //cell.profileImageView?.downloadImage(from: URL(string: iconURL))
-        
-        
-        //cell.profileImageView?.downloadImage(from: URL(string: profileUrl ))
-
-
-
+        //print(iconURL)
         return cell
     }
     

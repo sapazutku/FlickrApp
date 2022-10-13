@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54024BC628F8777C00B363BB /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54024BC528F8777C00B363BB /* PhotoCell.swift */; };
 		5448966C28F6E6CF00E02F44 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */; };
 		5448966F28F6E84900E02F44 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 5448966E28F6E84900E02F44 /* Moya */; };
 		5448967428F7481200E02F44 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448967328F7481200E02F44 /* UIImage+Extensions.swift */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		54024BC528F8777C00B363BB /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
 		5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		5448967328F7481200E02F44 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		5450EEFA28F608FB009A16ED /* FlickrApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +59,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		54024BC328F8776400B363BB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		54024BC428F8776A00B363BB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				54024BC528F8777C00B363BB /* PhotoCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		5448967228F747FD00E02F44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -194,6 +211,8 @@
 		5450EF2328F60BF2009A16ED /* Search */ = {
 			isa = PBXGroup;
 			children = (
+				54024BC428F8776A00B363BB /* View */,
+				54024BC328F8776400B363BB /* Model */,
 				5450EF3128F6125E009A16ED /* Controller */,
 			);
 			path = Search;
@@ -330,6 +349,7 @@
 				5450EF3428F6135A009A16ED /* SearchController.swift in Sources */,
 				5450EF3C28F6216A009A16ED /* PostCell.swift in Sources */,
 				5450EF3628F61367009A16ED /* HomeController.swift in Sources */,
+				54024BC628F8777C00B363BB /* PhotoCell.swift in Sources */,
 				5448967428F7481200E02F44 /* UIImage+Extensions.swift in Sources */,
 				5450EF3928F6137A009A16ED /* UserController.swift in Sources */,
 				5450EEFE28F608FB009A16ED /* AppDelegate.swift in Sources */,
