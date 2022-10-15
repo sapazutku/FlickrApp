@@ -139,10 +139,12 @@ class RegisterController: UIViewController {
     }
     
     @objc func handleSignUp() {
-        // handle Sign Up for the Firebase Firestore
+        
         guard let email = emailTextField.text else { return }
         guard let password = passwordTextField.text else { return }
         guard let username = usernameTextField.text else { return }
+        
+        // Create Auth User
         FirebaseAuth.Auth.auth().createUser(withEmail: email, password: password) { result, error in
             if let error = error {
                 let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
@@ -150,8 +152,11 @@ class RegisterController: UIViewController {
                 self.present(alert, animated: true)
                 return
             }
+            
             print("Successfully created user: ", result?.user.uid ?? "")
             guard let uid = result?.user.uid else { return }
+            
+            // Saving to the FireStore
             let values = ["email": email, "username": username, "password": password]
             Firestore.firestore().collection("users").document(uid).setData(values) { error in
                 if let error = error {
@@ -160,6 +165,18 @@ class RegisterController: UIViewController {
                     self.present(alert, animated: true)
                     return
                 }
+                // Update for display name
+                let changeRequest = result?.user.createProfileChangeRequest()
+                changeRequest?.displayName = username
+                changeRequest?.commitChanges(completion: { error in
+                    if let error = error {
+                        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                        self.present(alert, animated: true)
+                        return
+                    }
+                })
+                print("Successfully saved user info to Firestore")   
                 let alert = UIAlertController(title: "Success", message: "User created successfully", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler:  { _ in
                     self.navigationController?.popViewController(animated: true)

@@ -21,6 +21,7 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
         
         let post = responseArray[indexPath.item]
         
+        cell.post = post
         cell.usernameLabel.text = post.ownername
         cell.postImageView.downloadImage(from: post.url_m)
         cell.captionLabel.text = post.title

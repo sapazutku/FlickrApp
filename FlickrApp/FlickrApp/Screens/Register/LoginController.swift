@@ -73,6 +73,7 @@ class LoginController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        controlUser()
     }
 
     // MARK: - Helpers
@@ -139,9 +140,7 @@ class LoginController: UIViewController {
             else{
                 let alert = UIAlertController(title: "Login Succesfull", message: "Logged in", preferredStyle: .actionSheet)
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-                let customBar = CustomTabBarController()
-                self.navigationController?.pushViewController(customBar, animated: true)
-                
+                self.goToMain()
             }
                 
         })
@@ -150,6 +149,17 @@ class LoginController: UIViewController {
 
     @objc func handleShowSignUp() {
         navigationController?.pushViewController(RegisterController(), animated: true)
+    }
+    
+    func goToMain(){
+        let customBar = CustomTabBarController()
+        self.navigationController?.pushViewController(customBar, animated: true)
+    }
+
+    func controlUser(){
+        if (Auth.auth().currentUser != nil) {
+            goToMain()
+        }
     }
 }
 

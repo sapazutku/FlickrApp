@@ -15,6 +15,8 @@
 		542FBE0128FB1B8D00D97956 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542FBE0028FB1B8D00D97956 /* LoginController.swift */; };
 		542FBE0328FB378A00D97956 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542FBE0228FB378A00D97956 /* RegisterController.swift */; };
 		542FBE0628FB49B600D97956 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542FBE0528FB49B600D97956 /* CustomTabBarController.swift */; };
+		542FBE0928FB4EBC00D97956 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542FBE0828FB4EBC00D97956 /* User.swift */; };
+		542FBE0D28FB66A000D97956 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542FBE0C28FB66A000D97956 /* SettingsController.swift */; };
 		5448966C28F6E6CF00E02F44 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */; };
 		5448966F28F6E84900E02F44 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 5448966E28F6E84900E02F44 /* Moya */; };
 		5448967428F7481200E02F44 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448967328F7481200E02F44 /* UIImage+Extensions.swift */; };
@@ -39,6 +41,8 @@
 		542FBE0028FB1B8D00D97956 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		542FBE0228FB378A00D97956 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		542FBE0528FB49B600D97956 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		542FBE0828FB4EBC00D97956 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		542FBE0C28FB66A000D97956 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		5448967328F7481200E02F44 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		5450EEFA28F608FB009A16ED /* FlickrApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,6 +109,22 @@
 			path = TabBar;
 			sourceTree = "<group>";
 		};
+		542FBE0728FB4EB300D97956 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				542FBE0828FB4EBC00D97956 /* User.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		542FBE0B28FB669100D97956 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				542FBE0C28FB66A000D97956 /* SettingsController.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		5448967228F747FD00E02F44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +174,7 @@
 		5450EF1528F6094C009A16ED /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				542FBE0B28FB669100D97956 /* Settings */,
 				542FBE0428FB49A400D97956 /* TabBar */,
 				542FBDFF28FB17B300D97956 /* Register */,
 				5450EF2328F60BF2009A16ED /* Search */,
@@ -227,6 +248,7 @@
 		5450EF2028F60BDF009A16ED /* User */ = {
 			isa = PBXGroup;
 			children = (
+				542FBE0728FB4EB300D97956 /* Model */,
 				5450EF3728F6136D009A16ED /* Controller */,
 			);
 			path = User;
@@ -387,7 +409,9 @@
 				5450EF0228F608FB009A16ED /* ViewController.swift in Sources */,
 				5450EF3428F6135A009A16ED /* SearchController.swift in Sources */,
 				542FBE0628FB49B600D97956 /* CustomTabBarController.swift in Sources */,
+				542FBE0D28FB66A000D97956 /* SettingsController.swift in Sources */,
 				5450EF3C28F6216A009A16ED /* PostCell.swift in Sources */,
+				542FBE0928FB4EBC00D97956 /* User.swift in Sources */,
 				542FBE0128FB1B8D00D97956 /* LoginController.swift in Sources */,
 				5450EF3628F61367009A16ED /* HomeController.swift in Sources */,
 				54024BC628F8777C00B363BB /* PhotoCell.swift in Sources */,

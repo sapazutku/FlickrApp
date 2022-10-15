@@ -6,11 +6,15 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseFirestore
 
 class PostCell: UICollectionViewCell {
 
     // MARK: - Properties
 
+    var post: PhotoElement?
+    
     var postImageView: UIImageView = {
            let iv = UIImageView()
            iv.contentMode = .scaleAspectFill
@@ -94,12 +98,5 @@ class PostCell: UICollectionViewCell {
           captionLabel.frame = CGRect(x: 10, y: likesLabel.frame.origin.y , width: 200, height: 40)
           likeButton.frame = CGRect(x: 10, y: captionLabel.frame.origin.y + 30, width: 40, height: 40)
           saveButton.frame = CGRect(x: likeButton.frame.origin.x + 50, y: captionLabel.frame.origin.y + 30, width: 40, height: 40)
-        
-
-
       }
-    
-    
-
-
 }
