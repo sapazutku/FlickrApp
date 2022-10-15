@@ -44,7 +44,7 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
     
     private let provider = MoyaProvider<FlickrAPI>()
 
-    var responseArray = [PhotoElement]()
+    private var responseArray = [PhotoElement]()
 
     
     private let collectionView: UICollectionView = {

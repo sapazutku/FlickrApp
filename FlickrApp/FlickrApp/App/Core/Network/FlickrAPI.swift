@@ -12,6 +12,7 @@ enum FlickrAPI{
     case getRecent
     case getSize(id: String)
     case getPopular
+    case searchPhoto(searchString: String)
 
 }
 
@@ -26,9 +27,13 @@ extension FlickrAPI: TargetType{
             return .requestParameters(parameters: ["method": "flickr.photos.getRecent", "api_key": "fc59ff43ff445e7f1e43e7602bb6b832","per_page": 10, "page": 1, "format": "json", "nojsoncallback": "1","extras": "tags,owner_name,icon_server,views,url_m"], encoding: URLEncoding.queryString)
         case .getSize(let id):
             return .requestParameters(parameters: ["method": "flickr.photos.getSizes", "api_key": "fc59ff43ff445e7f1e43e7602bb6b832", "photo_id": id, "format": "json", "nojsoncallback": "1"], encoding: URLEncoding.queryString)
-        }
         case .getPopular:
             return .requestParameters(parameters: ["method": "flickr.photos.getPopular", "api_key": "fc59ff43ff445e7f1e43e7602bb6b832","per_page": 10, "page": 1, "format": "json", "nojsoncallback": "1","extras": "tags,owner_name,icon_server,views,url_m"], encoding: URLEncoding.queryString)
+        case .searchPhoto(searchString: let searchString):
+            return .requestParameters(parameters: ["method": "flickr.photos.search", "api_key": "fc59ff43ff445e7f1e43e7602bb6b832","per_page": 10, "page": 1, "tags": searchString, "format": "json", "nojsoncallback": "1","extras": "tags,owner_name,icon_server,views,url_m"], encoding: URLEncoding.queryString)
+            
+        }
+        
     }
         var headers: [String : String]? {
             return nil
@@ -48,7 +53,12 @@ extension FlickrAPI: TargetType{
                 return ""
             case .getSize:
                 return ""
+            case .getPopular:
+                return ""
+            case .searchPhoto(searchString: _):
+                return ""
             }
+        
 
         }
         
