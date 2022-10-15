@@ -1,8 +1,8 @@
 //
-//  HomeController.swift
+//  SearchController.swift
 //  FlickrApp
 //
-//  Created by utku on 12.10.2022.
+//  Created by utku on 15.10.2022.
 //
 
 import UIKit
@@ -25,6 +25,7 @@ class SearchController: UIViewController, UICollectionViewDataSource, UICollecti
     
     private let provider = MoyaProvider<FlickrAPI>()
     private var responseArray = [PhotoElement]()
+    private var copyResponseArray = [PhotoElement]()
     private var searchText = ""
     
     private let searchBar: UISearchBar = {
@@ -102,40 +103,47 @@ class SearchController: UIViewController, UICollectionViewDataSource, UICollecti
         }
     }
 
-    @objc func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchText = searchText
+    func searchPhoto (searchText: String){
+        provider.request(.searchPhoto(searchString: searchText)) { result in
+            switch result {
+            case .success(let response):
+                do {
+                    let responsePosts = try JSONDecoder().decode(Post.self, from: response.data)
+                    self.responseArray = responsePosts.photos.photo
+                    print(response.data)
+                    
+                } catch let error {
+                    print(error)
+                }
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 
     @objc func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("Gönderiler: \(searchText)")
+        guard let searchText = searchBar.text else { return }
+        self.searchText = searchText
+        copyResponseArray = responseArray
+        searchPhoto(searchText: searchText)
     }
 
-    
-}
+    @objc func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchText = searchText
+        searchBar.showsCancelButton = true
+    }
 
-
-/*
-if searchText.isEmpty {
-            fetchPosts()
-        } else {
-            provider.request(.searchPhotos(text: searchText)) { result in
-                switch result {
-                case .success(let response):
-                    do {
-                        let responsePosts = try JSONDecoder().decode(Post.self, from: response.data)
-                        
-                        self.responseArray = responsePosts.photos.photo
-                        print(response.data)
-                        
-                    } catch let error {
-                        print(error)
-                    }
-                    DispatchQueue.main.async {
-                        self.collectionView.reloadData()
-                    }
-                case .failure(let error):
-                    print(error)
-                }
-            }
+    @objc func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.showsCancelButton = false
+        searchBar.text = ""
+        responseArray = copyResponseArray
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
         }
-*/
+        searchBar.resignFirstResponder()
+        //fetchPosts()
+    }
+}
