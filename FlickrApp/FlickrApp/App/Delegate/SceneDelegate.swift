@@ -52,10 +52,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
     
-    // TODO: yeniden düzenle
-// https://stackoverflow.com/questions/43961766/uinavigationcontroller-and-tabbarcontroller-programmatically-no-storyboards
-    private func setUpTabBar() {
-        let tabBarController = CustomTabBarController()
+    
+    
+    
+    
+    
+    public func setUpTabBar() {
+        
         //window?.rootViewController = tabBarController
         window?.rootViewController = UINavigationController(rootViewController: LoginController())
         //window?.rootViewController = tabBarController
@@ -63,7 +66,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     
-    class CustomTabBarController: UITabBarController {
+  public class CustomTabBarController: UITabBarController {
         override func viewDidLoad() {
             super.viewDidLoad()
 

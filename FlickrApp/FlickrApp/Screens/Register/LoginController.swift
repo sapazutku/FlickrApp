@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 import SnapKit
 class LoginController: UIViewController {
     
@@ -125,7 +126,26 @@ class LoginController: UIViewController {
     }
 
     @objc func handleLogin() {
-        print("login")
+        guard let emailTextField = emailTextField.text else {return}
+        guard let password = passwordTextField.text else {return}
+        
+        FirebaseAuth.Auth.auth().signIn(withEmail: emailTextField, password: password, completion: {result, error in
+            if (error != nil) {
+                let alert = UIAlertController(title: "Error", message: error?.localizedDescription, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true)
+                return
+            }
+            else{
+                let alert = UIAlertController(title: "Login Succesfull", message: "Logged in", preferredStyle: .actionSheet)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                let customBar = CustomTabBarController()
+                self.navigationController?.pushViewController(customBar, animated: true)
+                
+            }
+                
+        })
+        
     }
 
     @objc func handleShowSignUp() {

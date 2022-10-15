@@ -14,6 +14,7 @@
 		542FBDFD28FB167300D97956 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 542FBDFC28FB167300D97956 /* GoogleService-Info.plist */; };
 		542FBE0128FB1B8D00D97956 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542FBE0028FB1B8D00D97956 /* LoginController.swift */; };
 		542FBE0328FB378A00D97956 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542FBE0228FB378A00D97956 /* RegisterController.swift */; };
+		542FBE0628FB49B600D97956 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542FBE0528FB49B600D97956 /* CustomTabBarController.swift */; };
 		5448966C28F6E6CF00E02F44 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */; };
 		5448966F28F6E84900E02F44 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 5448966E28F6E84900E02F44 /* Moya */; };
 		5448967428F7481200E02F44 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448967328F7481200E02F44 /* UIImage+Extensions.swift */; };
@@ -37,6 +38,7 @@
 		542FBDFC28FB167300D97956 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		542FBE0028FB1B8D00D97956 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		542FBE0228FB378A00D97956 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
+		542FBE0528FB49B600D97956 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
 		5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		5448967328F7481200E02F44 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		5450EEFA28F608FB009A16ED /* FlickrApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -95,6 +97,14 @@
 			path = Register;
 			sourceTree = "<group>";
 		};
+		542FBE0428FB49A400D97956 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				542FBE0528FB49B600D97956 /* CustomTabBarController.swift */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
 		5448967228F747FD00E02F44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,6 +154,7 @@
 		5450EF1528F6094C009A16ED /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				542FBE0428FB49A400D97956 /* TabBar */,
 				542FBDFF28FB17B300D97956 /* Register */,
 				5450EF2328F60BF2009A16ED /* Search */,
 				5450EF2128F60BE4009A16ED /* Home */,
@@ -375,6 +386,7 @@
 			files = (
 				5450EF0228F608FB009A16ED /* ViewController.swift in Sources */,
 				5450EF3428F6135A009A16ED /* SearchController.swift in Sources */,
+				542FBE0628FB49B600D97956 /* CustomTabBarController.swift in Sources */,
 				5450EF3C28F6216A009A16ED /* PostCell.swift in Sources */,
 				542FBE0128FB1B8D00D97956 /* LoginController.swift in Sources */,
 				5450EF3628F61367009A16ED /* HomeController.swift in Sources */,
