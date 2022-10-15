@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		54024BC628F8777C00B363BB /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 54024BC528F8777C00B363BB /* PhotoCell.swift */; };
+		542FBDF728FAFD3D00D97956 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 542FBDF628FAFD3D00D97956 /* FirebaseAuth */; };
+		542FBDF928FAFD3D00D97956 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 542FBDF828FAFD3D00D97956 /* FirebaseFirestore */; };
+		542FBDFB28FAFD3D00D97956 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 542FBDFA28FAFD3D00D97956 /* FirebaseRemoteConfig */; };
+		542FBDFD28FB167300D97956 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 542FBDFC28FB167300D97956 /* GoogleService-Info.plist */; };
+		542FBE0128FB1B8D00D97956 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542FBE0028FB1B8D00D97956 /* LoginController.swift */; };
+		542FBE0328FB378A00D97956 /* RegisterController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542FBE0228FB378A00D97956 /* RegisterController.swift */; };
 		5448966C28F6E6CF00E02F44 /* FlickrAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */; };
 		5448966F28F6E84900E02F44 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = 5448966E28F6E84900E02F44 /* Moya */; };
 		5448967428F7481200E02F44 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5448967328F7481200E02F44 /* UIImage+Extensions.swift */; };
@@ -28,6 +34,9 @@
 
 /* Begin PBXFileReference section */
 		54024BC528F8777C00B363BB /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		542FBDFC28FB167300D97956 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		542FBE0028FB1B8D00D97956 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		542FBE0228FB378A00D97956 /* RegisterController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterController.swift; sourceTree = "<group>"; };
 		5448966B28F6E6CF00E02F44 /* FlickrAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickrAPI.swift; sourceTree = "<group>"; };
 		5448967328F7481200E02F44 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		5450EEFA28F608FB009A16ED /* FlickrApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickrApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +61,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5448966F28F6E84900E02F44 /* Moya in Frameworks */,
+				542FBDF928FAFD3D00D97956 /* FirebaseFirestore in Frameworks */,
+				542FBDF728FAFD3D00D97956 /* FirebaseAuth in Frameworks */,
 				5450EF3028F61202009A16ED /* SnapKit in Frameworks */,
+				542FBDFB28FAFD3D00D97956 /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +84,15 @@
 				54024BC528F8777C00B363BB /* PhotoCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		542FBDFF28FB17B300D97956 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				542FBE0028FB1B8D00D97956 /* LoginController.swift */,
+				542FBE0228FB378A00D97956 /* RegisterController.swift */,
+			);
+			path = Register;
 			sourceTree = "<group>";
 		};
 		5448967228F747FD00E02F44 /* Extensions */ = {
@@ -123,6 +144,7 @@
 		5450EF1528F6094C009A16ED /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				542FBDFF28FB17B300D97956 /* Register */,
 				5450EF2328F60BF2009A16ED /* Search */,
 				5450EF2128F60BE4009A16ED /* Home */,
 				5450EF2028F60BDF009A16ED /* User */,
@@ -160,6 +182,7 @@
 		5450EF1928F60A96009A16ED /* Plists */ = {
 			isa = PBXGroup;
 			children = (
+				542FBDFC28FB167300D97956 /* GoogleService-Info.plist */,
 				5450EF0E28F608FC009A16ED /* Info.plist */,
 			);
 			path = Plists;
@@ -285,6 +308,9 @@
 			packageProductDependencies = (
 				5450EF2F28F61202009A16ED /* SnapKit */,
 				5448966E28F6E84900E02F44 /* Moya */,
+				542FBDF628FAFD3D00D97956 /* FirebaseAuth */,
+				542FBDF828FAFD3D00D97956 /* FirebaseFirestore */,
+				542FBDFA28FAFD3D00D97956 /* FirebaseRemoteConfig */,
 			);
 			productName = FlickrApp;
 			productReference = 5450EEFA28F608FB009A16ED /* FlickrApp.app */;
@@ -317,6 +343,7 @@
 			packageReferences = (
 				5450EF2E28F61202009A16ED /* XCRemoteSwiftPackageReference "SnapKit" */,
 				5448966D28F6E84900E02F44 /* XCRemoteSwiftPackageReference "Moya" */,
+				542FBDF528FAFD3D00D97956 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 5450EEFB28F608FB009A16ED /* Products */;
 			projectDirPath = "";
@@ -333,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5450EF0D28F608FC009A16ED /* LaunchScreen.storyboard in Resources */,
+				542FBDFD28FB167300D97956 /* GoogleService-Info.plist in Resources */,
 				5450EF0A28F608FC009A16ED /* Assets.xcassets in Resources */,
 				5450EF0528F608FB009A16ED /* Main.storyboard in Resources */,
 			);
@@ -348,12 +376,14 @@
 				5450EF0228F608FB009A16ED /* ViewController.swift in Sources */,
 				5450EF3428F6135A009A16ED /* SearchController.swift in Sources */,
 				5450EF3C28F6216A009A16ED /* PostCell.swift in Sources */,
+				542FBE0128FB1B8D00D97956 /* LoginController.swift in Sources */,
 				5450EF3628F61367009A16ED /* HomeController.swift in Sources */,
 				54024BC628F8777C00B363BB /* PhotoCell.swift in Sources */,
 				5448967428F7481200E02F44 /* UIImage+Extensions.swift in Sources */,
 				5450EF3928F6137A009A16ED /* UserController.swift in Sources */,
 				5450EEFE28F608FB009A16ED /* AppDelegate.swift in Sources */,
 				5450EF3F28F62256009A16ED /* Post.swift in Sources */,
+				542FBE0328FB378A00D97956 /* RegisterController.swift in Sources */,
 				5450EF0828F608FB009A16ED /* FlickrApp.xcdatamodeld in Sources */,
 				5450EF0028F608FB009A16ED /* SceneDelegate.swift in Sources */,
 				5448966C28F6E6CF00E02F44 /* FlickrAPI.swift in Sources */,
@@ -437,6 +467,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -491,6 +522,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -584,6 +616,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		542FBDF528FAFD3D00D97956 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 		5448966D28F6E84900E02F44 /* XCRemoteSwiftPackageReference "Moya" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Moya/Moya";
@@ -603,6 +643,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		542FBDF628FAFD3D00D97956 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 542FBDF528FAFD3D00D97956 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		542FBDF828FAFD3D00D97956 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 542FBDF528FAFD3D00D97956 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		542FBDFA28FAFD3D00D97956 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 542FBDF528FAFD3D00D97956 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
+		};
 		5448966E28F6E84900E02F44 /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5448966D28F6E84900E02F44 /* XCRemoteSwiftPackageReference "Moya" */;
