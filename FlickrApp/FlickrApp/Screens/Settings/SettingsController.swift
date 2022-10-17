@@ -28,8 +28,8 @@ class SettingsController: UIViewController, UITableViewDelegate, UITableViewData
     private let reuseIdentifier = "SettingsCell"
     
     private let sectionOptions = [
-        "Edit Profile", "Change Password", "Log Out",
-        "Terms of Service", "Privacy Policy", "Send Feedback"
+        "Change Profile Photo", "Change Username", "Change Password",
+        "About", "Send Feedback"
     ]
     
     // MARK: - Lifecycle

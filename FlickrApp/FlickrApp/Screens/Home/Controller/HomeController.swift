@@ -20,7 +20,6 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
         
         let post = responseArray[indexPath.item]
-        
         cell.post = post
         cell.usernameLabel.text = post.ownername
         cell.postImageView.downloadImage(from: post.url_m)
@@ -36,7 +35,7 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
         else{
             cell.profileImageView?.downloadImage(from: URL(string: "https://www.flickr.com/images/buddyicon.gif"))
         }
-        
+        cell.contentView.isUserInteractionEnabled = false
         //print(iconURL)
         return cell
     }
@@ -104,5 +103,6 @@ class HomeController: UIViewController, UICollectionViewDataSource, UICollection
             }
         }
     }
-
+    
+   
 }

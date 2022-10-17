@@ -7,11 +7,31 @@
 
 import UIKit
 import FirebaseAuth
-class UserController: UIViewController {
+class UserController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if data == false {
+            return user?.likes.count ?? .zero
+        }
+        else {
+            return user?.saves.count ?? .zero
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
+        if data == false {
+            cell.post = user?.likes[indexPath.row]
+        }
+        else {
+            cell.post = user?.saves[indexPath.row]
+        }
+        return cell
+    }
+    
     
     // MARK: - Properties
     var user: User?
-
+    var data: Bool = false
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -72,6 +92,7 @@ class UserController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
+
         cv.backgroundColor = .white
         return cv
     }()
@@ -116,30 +137,26 @@ class UserController: UIViewController {
             make.left.equalTo(profileImageView.snp.right).offset(16)
         }
         
-        
-       
-
-        view.addSubview(likesButton)
-        likesButton.snp.makeConstraints { make in
+        // likes button and save button in a line
+        let stack = UIStackView(arrangedSubviews: [likesButton, savesButton])
+        stack.axis = .horizontal
+        stack.distribution = .fillEqually
+        view.addSubview(stack)
+        stack.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(16)
-            make.left.equalTo(view.snp.left).offset(16)
+            make.left.equalTo(view.snp.left)
+            make.right.equalTo(view.snp.right)
+            make.height.equalTo(50)
         }
 
-        view.addSubview(savesButton)
-        savesButton.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(16)
-            make.left.equalTo(likesButton.snp.right).offset(16)
-        }
 
         view.addSubview(collectionView)
-       collectionView.snp.makeConstraints { make in
-           make.top.equalTo(profileImageView.snp.bottom).offset(16)
-           make.left.right.equalTo(view)
-           make.height.equalTo(200)
-       }
-
-        
-
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(stack.snp.bottom).offset(16)
+            make.left.equalTo(view.snp.left)
+            make.right.equalTo(view.snp.right)
+            make.bottom.equalTo(view.snp.bottom)
+        }
     }
     
     // MARK: -Methods
@@ -169,11 +186,15 @@ class UserController: UIViewController {
         print("likes")
         likesButton.setTitleColor(.systemPink, for: .normal)
         savesButton.setTitleColor(.black, for: .normal)
+        data = false
+        collectionView.reloadData()
     }
     
     @objc func handleShowSaves(){
         print("saves")
         likesButton.setTitleColor(.black, for: .normal)
         savesButton.setTitleColor(.systemPink, for: .normal)
+        data = true
+        collectionView.reloadData()
     }
 }

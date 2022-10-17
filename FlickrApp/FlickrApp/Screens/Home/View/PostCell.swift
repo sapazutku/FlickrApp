@@ -52,17 +52,19 @@ class PostCell: UICollectionViewCell {
            return label
        }()
 
-       let likeButton: UIButton = {
-           let button = UIButton(type: .system)
+        lazy var likeButton: UIButton = {
+           var button = UIButton(type: .system)
            button.setImage(UIImage(systemName: "heart" ), for: .normal)
            button.tintColor = .systemPink
+            button.addTarget(self, action: #selector(handleLike), for: .touchUpInside)
            return button
        }()
 
-       let saveButton: UIButton = {
-           let button = UIButton(type: .system)
+       lazy var saveButton: UIButton = {
+           var button = UIButton(type: .system)
            button.setImage(UIImage(systemName: "folder"), for: .normal)
            button.tintColor = .systemPink
+           button.addTarget(self, action: #selector(handleSave), for: .touchUpInside)
            return button
        }()
 
@@ -78,14 +80,11 @@ class PostCell: UICollectionViewCell {
         addSubview(likesLabel)
         addSubview(likeButton)
         addSubview(saveButton)
-          
-          //postImageView.backgroundColor = .red
-        //captionLabel.text = data?.title
         
       }
 
       required init?(coder: NSCoder) {
-          fatalError("init(coder:) has not been implemented")
+        fatalError("init(coder:) has not been implemented")     
       }
 
       override func layoutSubviews() {
@@ -99,4 +98,21 @@ class PostCell: UICollectionViewCell {
           likeButton.frame = CGRect(x: 10, y: captionLabel.frame.origin.y + 30, width: 40, height: 40)
           saveButton.frame = CGRect(x: likeButton.frame.origin.x + 50, y: captionLabel.frame.origin.y + 30, width: 40, height: 40)
       }
+
+    // MARK: - Actions
+
+    @objc func handleLike() {
+        // add Firestore user like array
+        guard let post = post else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        guard let postId = post.id else { return }
+        Firestore.firestore().collection("users").document(uid).updateData(["likes": FieldValue.arrayUnion([postId])]) { _ in
+            print("DEBUG: Successfully liked post")
+        }
+    }
+
+    @objc func handleSave() {
+        print("DEBUG: Save post")
+    }
+
 }
