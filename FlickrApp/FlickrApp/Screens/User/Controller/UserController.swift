@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 class UserController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if data == false {
@@ -186,9 +187,23 @@ class UserController: UIViewController, UITableViewDelegate, UITableViewDataSour
             self.user = User(username: dictionary["username"] as! String, email: dictionary["email"] as! String, likes: dictionary["likes"] as! [String], saves: dictionary["saves"] as! [String])
             self.usernameLabel.text = self.user?.username
             self.emailLabel.text = self.user?.email
-            //self.profileImageView.downloadImage(from: URL(string: (self.user?.profileImageUrl)!))
+            
+            self.getUserPhoto(uid: uid)
             self.tableView.reloadData()
-            print(self.user?.likes)
+            
+        }
+    }
+    
+    func getUserPhoto(uid:String){
+        // get profile image from firebase storage
+        Storage.storage().reference().child("images/\(uid).png").getData(maxSize: 15 * 1024 * 1024) { data, error in
+            if error != nil  {
+                print("DEBUG: Failed to fetch user photo with error \(error!.localizedDescription)")
+                return
+            }
+            guard let data = data else { return }
+            let image = UIImage(data: data)
+            self.profileImageView.image = image
         }
     }
 
@@ -237,3 +252,18 @@ class UserController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.reloadData()
     }
 }
+
+
+/*
+let storage = Storage.storage().reference(forURL: "gs://flickrapp-22b24.appspot.com")
+        let profileImageRef = storage.child("/images/\(uid).png")
+        profileImageRef.getData(maxSize: 1 * 240 * 240) { data, error in
+            if let error = error {
+                print("DEBUG: Failed to fetch profile image with error \(error.localizedDescription)")
+                return
+            }
+            guard let data = data else { return }
+            let image = UIImage(data: data)
+            self.profileImageView.image = image
+        }
+*/
