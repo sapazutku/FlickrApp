@@ -102,17 +102,23 @@ class PostCell: UICollectionViewCell {
     // MARK: - Actions
 
     @objc func handleLike() {
-        // add Firestore user like array
         guard let post = post else { return }
         guard let uid = Auth.auth().currentUser?.uid else { return }
-        guard let postId = post.id else { return }
-        Firestore.firestore().collection("users").document(uid).updateData(["likes": FieldValue.arrayUnion([postId])]) { _ in
-            print("DEBUG: Successfully liked post")
+        let postURL  = String(describing: post.url_m!)
+        // convert to String
+       Firestore.firestore().collection("users").document(uid).updateData(["likes": FieldValue.arrayUnion([postURL])]) { _ in
+            self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         }
     }
 
     @objc func handleSave() {
-        print("DEBUG: Save post")
+        guard let post = post else { return }
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let postURL  = String(describing: post.url_m!)
+        // convert to String
+       Firestore.firestore().collection("users").document(uid).updateData(["saves": FieldValue.arrayUnion([postURL])]) { _ in
+            self.saveButton.setImage(UIImage(systemName: "folder.fill"), for: .normal)
+        }
     }
 
 }

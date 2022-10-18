@@ -7,31 +7,42 @@
 
 import UIKit
 import FirebaseAuth
-class UserController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+import FirebaseFirestore
+class UserController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if data == false {
             return user?.likes.count ?? .zero
-        }
-        else {
+        } else {
             return user?.saves.count ?? .zero
         }
+        
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as! PostCell
-        if data == false {
-            cell.post = user?.likes[indexPath.row]
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UITableViewCell
+        cell.textLabel?.text = user?.likes[indexPath.row]
+        
+        if data == false{
+            cell.imageView?.downloadImage(from: URL(string: user?.likes[indexPath.row] ?? "https://via.placeholder.com/150")!)
         }
-        else {
-            cell.post = user?.saves[indexPath.row]
+        else{
+            cell.imageView?.downloadImage(from: URL(string: user?.saves[indexPath.row] ?? "https://via.placeholder.com/150")!)
         }
+        
         return cell
     }
+    
+    
+        
+   
     
     
     // MARK: - Properties
     var user: User?
     var data: Bool = false
+    
+
+
     private let profileImageView: UIImageView = {
         let iv = UIImageView()
         iv.contentMode = .scaleAspectFill
@@ -60,7 +71,7 @@ class UserController: UIViewController, UICollectionViewDataSource, UICollection
     private let likesButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Likes", for: .normal)
-        button.setTitleColor(.black, for: .normal)
+        button.setTitleColor(.systemPink, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 25)
         // set button width to half of the screen
         button.widthAnchor.constraint(equalToConstant: 100).isActive = true
@@ -84,18 +95,15 @@ class UserController: UIViewController, UICollectionViewDataSource, UICollection
         return button
     }()
 
-    
-    
 
-    // Likes and Saves CollectionView
-    private let collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        let cv = UICollectionView(frame: .zero, collectionViewLayout: layout)
-
-        cv.backgroundColor = .white
-        return cv
+    // table view
+    private let tableView: UITableView = {
+        let tv = UITableView()
+        tv.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return tv
     }()
+    
+
 
 
     // MARK: - Lifecycle
@@ -149,21 +157,52 @@ class UserController: UIViewController, UICollectionViewDataSource, UICollection
             make.height.equalTo(50)
         }
 
-
-        view.addSubview(collectionView)
-        collectionView.snp.makeConstraints { make in
+        // table view
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
             make.top.equalTo(stack.snp.bottom).offset(16)
             make.left.equalTo(view.snp.left)
             make.right.equalTo(view.snp.right)
             make.bottom.equalTo(view.snp.bottom)
         }
+
+
     }
     
     // MARK: -Methods
     
-    func getUser(){
-        usernameLabel.text = FirebaseAuth.Auth.auth().currentUser?.displayName
-        emailLabel.text = FirebaseAuth.Auth.auth().currentUser?.email
+    func getUser(){   
+        // get user info from Firestore
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, error in
+            if let error = error {
+                print("DEBUG: Failed to fetch user with error \(error.localizedDescription)")
+                return
+            }
+            guard let dictionary = snapshot?.data() else { return }
+            self.user = User(username: dictionary["username"] as! String, email: dictionary["email"] as! String, likes: dictionary["likes"] as! [String], saves: dictionary["saves"] as! [String])
+            self.usernameLabel.text = self.user?.username
+            self.emailLabel.text = self.user?.email
+            //self.profileImageView.downloadImage(from: URL(string: (self.user?.profileImageUrl)!))
+            self.tableView.reloadData()
+            print(self.user?.likes)
+        }
+    }
+
+    func getLikes(){
+        // get current user likes array from firestore
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        Firestore.firestore().collection("users").document(uid).getDocument { snapshot, error in
+            if let error = error {
+                print("DEBUG: Error getting likes \(error.localizedDescription)")
+            }
+            guard let data = snapshot?.data() else { return }
+            // print likes array
+            print("DEBUG: Likes array \(data["likes"] as? [String])")
+        }
     }
     
     @objc func handleLogout(){
@@ -187,7 +226,7 @@ class UserController: UIViewController, UICollectionViewDataSource, UICollection
         likesButton.setTitleColor(.systemPink, for: .normal)
         savesButton.setTitleColor(.black, for: .normal)
         data = false
-        collectionView.reloadData()
+        tableView.reloadData()
     }
     
     @objc func handleShowSaves(){
@@ -195,6 +234,6 @@ class UserController: UIViewController, UICollectionViewDataSource, UICollection
         likesButton.setTitleColor(.black, for: .normal)
         savesButton.setTitleColor(.systemPink, for: .normal)
         data = true
-        collectionView.reloadData()
+        tableView.reloadData()
     }
 }

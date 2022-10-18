@@ -11,10 +11,10 @@ import Foundation
 class User {
     var username: String
     var email: String
-    var likes: [PhotoElement]
-    var saves: [PhotoElement]
+    var likes: [String]
+    var saves: [String]
     
-    init(username: String,email: String, likes: [PhotoElement], saves:[PhotoElement]) {
+    init(username: String,email: String, likes: [String], saves:[String]) {
         self.username = username
         self.email = email
         self.likes = likes
