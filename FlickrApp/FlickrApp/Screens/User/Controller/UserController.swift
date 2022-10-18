@@ -12,22 +12,22 @@ import FirebaseStorage
 class UserController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if data == false {
-            return user?.likes.count ?? .zero
+            return user?.likes?.count ?? .zero
         } else {
-            return user?.saves.count ?? .zero
+            return user?.saves?.count ?? .zero
         }
         
     }
     
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! UITableViewCell
-        cell.textLabel?.text = user?.likes[indexPath.row]
+        cell.textLabel?.text = "\(indexPath.row + 1). post"
         
         if data == false{
-            cell.imageView?.downloadImage(from: URL(string: user?.likes[indexPath.row] ?? "https://via.placeholder.com/150")!)
+            cell.imageView?.downloadImage(from: URL(string: user?.likes?[indexPath.row] ?? "https://via.placeholder.com/150")!)
         }
         else{
-            cell.imageView?.downloadImage(from: URL(string: user?.saves[indexPath.row] ?? "https://via.placeholder.com/150")!)
+            cell.imageView?.downloadImage(from: URL(string: user?.saves?[indexPath.row] ?? "https://via.placeholder.com/150")!)
         }
         
         return cell
@@ -115,6 +115,11 @@ class UserController: UIViewController, UITableViewDelegate, UITableViewDataSour
         getUser()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getUser()
+    }
+    
     // MARK: - Helpers
     
     func configureUI() {
@@ -175,7 +180,7 @@ class UserController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: -Methods
     
-    func getUser(){   
+    public func getUser(){   
         // get user info from Firestore
         guard let uid = Auth.auth().currentUser?.uid else { return }
         Firestore.firestore().collection("users").document(uid).getDocument { snapshot, error in
@@ -184,7 +189,7 @@ class UserController: UIViewController, UITableViewDelegate, UITableViewDataSour
                 return
             }
             guard let dictionary = snapshot?.data() else { return }
-            self.user = User(username: dictionary["username"] as! String, email: dictionary["email"] as! String, likes: dictionary["likes"] as! [String], saves: dictionary["saves"] as! [String])
+            self.user = User(username: dictionary["username"] as! String, email: dictionary["email"] as! String, likes: dictionary["likes"] as? [String], saves: dictionary["saves"] as? [String])
             self.usernameLabel.text = self.user?.username
             self.emailLabel.text = self.user?.email
             

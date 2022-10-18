@@ -12,10 +12,10 @@ class User {
     var username: String
     var email: String
     
-    var likes: [String]
-    var saves: [String]
+    var likes: [String]?
+    var saves: [String]?
     
-    init(username: String,email: String, likes: [String], saves:[String]) {
+    init(username: String,email: String, likes: [String]?, saves:[String]?) {
         self.username = username
         self.email = email
         
