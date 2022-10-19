@@ -7,32 +7,20 @@
 * IQKeyboardManager
 
 # Features
+
 * Login, SignUp
   
-<video width="212" height="428" controls >
-  <source src="https://user-images.githubusercontent.com/64533036/196563700-ffede077-1138-490c-9c28-4bc704e48af5.mov" type="video/mp4" />
-</video>
+https://user-images.githubusercontent.com/64533036/196566789-99b3ec47-2cbd-488d-bef2-bb9967d3a8c3.mov
 
 * Like and Save
-  
-<video width="212" height="428" controls >
-  <source src="https://user-images.githubusercontent.com/64533036/196565570-d51573d7-d143-41d6-8550-bf1e7616c019.mov" type="video/mp4" />
-</video>
+
+https://user-images.githubusercontent.com/64533036/196566837-6271e9d4-5772-4701-96b5-8f395f080807.mov
 
 * Search photos
 
-<video width="212" height="428" controls >
-  <source src="https://user-images.githubusercontent.com/64533036/196565348-65028998-7efd-4f31-98b4-087e3386b2f3.mov" type="video/mp4" />
-</video>
+https://user-images.githubusercontent.com/64533036/196566851-da5a2c5f-2323-4b39-918f-ac871157dd86.mov
 
 * Update Profile
 
-
-<video width="212" height="428" controls >
-  <source src="https://user-images.githubusercontent.com/64533036/196565739-f35f1b3f-4889-4a97-bf1b-af3ab551c361.mov
-" type="video/mp4" />
-</video>
-
-
-
+https://user-images.githubusercontent.com/64533036/196566861-bf4eda72-65ab-44a1-950a-a79a39090232.mov
 
