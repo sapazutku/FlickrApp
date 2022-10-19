@@ -10,7 +10,7 @@
 
 * Login, SignUp
   
-https://user-images.githubusercontent.com/64533036/196566789-99b3ec47-2cbd-488d-bef2-bb9967d3a8c3.mov
+https://user-images.githubusercontent.com/64533036/196569653-3e2ee47f-cbb2-45ee-b2e2-d1f0c9d3a02e.mov
 
 * Like and Save
 
@@ -23,4 +23,3 @@ https://user-images.githubusercontent.com/64533036/196566851-da5a2c5f-2323-4b39-
 * Update Profile
 
 https://user-images.githubusercontent.com/64533036/196566861-bf4eda72-65ab-44a1-950a-a79a39090232.mov
-
