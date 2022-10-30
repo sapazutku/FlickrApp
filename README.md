@@ -1,6 +1,5 @@
 # FlickrApp
 # Structure
-* MVVM
 * Firebase (Remote Config, Authentication, Firestore)
 * Moya
 * Snapkit
